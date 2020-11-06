@@ -1,6 +1,3 @@
 require "check_please_rspec_matcher/version"
-
-module CheckPleaseRspecMatcher
-  class Error < StandardError; end
-  # Your code goes here...
-end
+require 'check_please_rspec_matcher/matcher'
+require 'check_please_rspec_matcher/rspec_hooks' # leave this at the end
