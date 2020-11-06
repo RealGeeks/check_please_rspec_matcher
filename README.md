@@ -2,8 +2,8 @@
 
 RSpec matcher to check for differences between two JSON strings (or Ruby data
 structures parsed from them).  Most of the heavy lifting is done by the
-'check_please' gem; this is merely an RSpec wrapper that I didn't want to
-include in the main gem.
+[check_please](https://github.com/RealGeeks/check_please) gem; this is merely
+an RSpec wrapper that I didn't want to include in the main gem.
 
 ## Installation
 
