@@ -31,6 +31,11 @@ candidate = '{ "foo": 43 }'
 expect( candidate ).to check_please( reference )
 ```
 
+### Failure Messages
+
+**For more information on understanding the diffs in the failure message, see
+[check_please](https://github.com/RealGeeks/check_please/README.md).**
+
 The failure message should look something like this:
 
 ```
