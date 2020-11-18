@@ -1,4 +1,4 @@
 module CheckPleaseRspecMatcher
-  # NOTE: the gemspec declares its dependency on 'check_please' as '~>' to this
-  VERSION = "0.2.4"
+  # NOTE: don't forget to change the dependency on the 'check_please' gem in the .gemspec file
+  VERSION = "0.2.5"
 end
