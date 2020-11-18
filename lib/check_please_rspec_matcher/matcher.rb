@@ -21,7 +21,7 @@ module CheckPleaseRspecMatcher
 
     def failure_message
       format = opts[:format_diffs]
-      diff_text = CheckPlease::Printers.render(diffs, format)
+      diff_text = CheckPlease::Printers.render(diffs, format: format)
       <<~EOF
         Expected two JSON data structures to match, but found the following diffs:
 
