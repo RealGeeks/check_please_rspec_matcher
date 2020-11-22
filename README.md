@@ -5,6 +5,13 @@ structures parsed from them).  Most of the heavy lifting is done by the
 [check_please](https://github.com/RealGeeks/check_please) gem; this is merely
 an RSpec wrapper that I didn't want to include in the main gem.
 
+## See Also
+
+If you'd like more control over the output formatting, and especially if you'd
+like to provide custom logic for diffing your own classes, you might be better
+served by the [super_diff](https://github.com/mcmire/super_diff) gem.  Check it
+out!
+
 ## Installation
 
 Add this line to your application's Gemfile:
