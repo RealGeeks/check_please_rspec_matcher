@@ -25,6 +25,6 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "check_please", "~> 0.3.0" # NOTE: this should *usually* correspond with this gem's VERSION constant
+  spec.add_dependency "check_please", "~> 0.4.1" # NOTE: this should *usually* correspond with this gem's VERSION constant
   spec.add_dependency "rspec", "~> 3.9"
 end
