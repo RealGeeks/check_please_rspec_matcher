@@ -55,12 +55,16 @@ mismatch | /foo | 42        | 43
 
 ### Options
 
-The `check_please` helper method currently accepts a single keyword argument:
+The `check_please` helper method accepts keyword arguments that correspond to
+the flags defined in the CheckPlease gem.  I haven't documented these yet, but
+if you feel like reading some source code, search [this
+file](https://github.com/RealGeeks/check_please/blob/main/lib/check_please.rb)
+for `Flags.define`.
 
 ```ruby
 reference = '{ "foo": 42 }'
 candidate = '{ "foo": 43 }'
-expect( candidate ).to check_please( reference, format_diffs: :json )
+expect( candidate ).to check_please( reference, format: :json )
 ```
 
 Using `:json` as above will output the diffs in JSON instead of a table:

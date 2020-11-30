@@ -7,8 +7,8 @@ RSpec.describe CheckPleaseRspecMatcher do
 
     # Because the name will almost certainly change,
     # let's make it so we only have to change it once.
-    def invoke!(opts = {})
-      expect( candidate ).to check_please( reference, **opts )
+    def invoke!(flags = {})
+      expect( candidate ).to check_please( reference, flags )
     end
 
 
@@ -43,14 +43,14 @@ RSpec.describe CheckPleaseRspecMatcher do
         expect( msg ).to include(expected_diff)
       end
 
-      specify "#failure_message format can be changed with the :format_diffs kwarg" do
+      specify "#failure_message format can be changed with the :format kwarg" do
         expected_diff = strip_trailing_whitespace(<<~EOF)
           [
             { "type": "mismatch", "path": "/foo", "reference": 42, "candidate": 43 }
           ]
         EOF
 
-        msg = capture_failure_message { invoke!(format_diffs: :json) }
+        msg = capture_failure_message { invoke!(format: :json) }
         expect( msg ).to match( /found the following diffs/ )
         expect( msg ).to include(expected_diff)
       end

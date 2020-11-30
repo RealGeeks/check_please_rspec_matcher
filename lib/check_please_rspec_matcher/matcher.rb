@@ -3,15 +3,15 @@ require 'check_please'
 module CheckPleaseRspecMatcher
 
   module RSpecHelper
-    def check_please(expected, format_diffs: nil)
-      CheckPleaseRspecMatcher::Matcher.new(expected, format_diffs: format_diffs)
+    def check_please(expected, flags = {})
+      ::CheckPleaseRspecMatcher::Matcher.new(expected, flags)
     end
   end
 
   class Matcher
-    def initialize(expected, opts = {})
+    def initialize(expected, flags = {})
       @expected = expected
-      @opts = opts || {}
+      @flags = flags || {}
     end
 
     def matches?(actual)
@@ -20,8 +20,7 @@ module CheckPleaseRspecMatcher
     end
 
     def failure_message
-      format = opts[:format_diffs]
-      diff_text = CheckPlease::Printers.render(diffs, format: format)
+      diff_text = ::CheckPlease::Printers.render(diffs, flags)
       <<~EOF
         Expected two JSON data structures to match, but found the following diffs:
 
@@ -30,10 +29,10 @@ module CheckPleaseRspecMatcher
     end
 
     private
-    attr_reader :expected, :opts, :actual
+    attr_reader :expected, :flags, :actual
 
     def diffs
-      @_diffs ||= ::CheckPlease.diff(@expected, @actual)
+      @_diffs ||= ::CheckPlease.diff(expected, actual, flags)
     end
   end
 
