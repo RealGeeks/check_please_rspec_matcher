@@ -22,7 +22,7 @@ RSpec.describe CheckPleaseRspecMatcher do
       end
     end
 
-    context "when given two different JSON strings" do
+    context "when given two different JSON strings with one diff" do
       let(:reference) { '{ "foo": 42 }' }
       let(:candidate) { '{ "foo": 43 }' }
 
@@ -39,8 +39,12 @@ RSpec.describe CheckPleaseRspecMatcher do
         EOF
 
         msg = capture_failure_message { invoke! }
-        expect( msg ).to match( /found the following diffs/ )
         expect( msg ).to include(expected_diff)
+      end
+
+      specify "#failure_message does not pluralize the word 'diff'" do
+        msg = capture_failure_message { invoke! }
+        expect( msg ).to match( /found the following 1 diff/ )
       end
 
       specify "#failure_message format can be changed with the :format kwarg" do
@@ -51,8 +55,18 @@ RSpec.describe CheckPleaseRspecMatcher do
         EOF
 
         msg = capture_failure_message { invoke!(format: :json) }
-        expect( msg ).to match( /found the following diffs/ )
+        expect( msg ).to match( /found the following 1 diff/ )
         expect( msg ).to include(expected_diff)
+      end
+    end
+
+    context "when given two different JSON strings with two diffs" do
+      let(:reference) { '{ "foo": 42, "bar": 23 }' }
+      let(:candidate) { '{ "foo": 23, "bar": 24 }' }
+
+      specify "#failure_message pluralizes the word 'diff'" do
+        msg = capture_failure_message { invoke! }
+        expect( msg ).to match( /found the following 2 diffs/ )
       end
     end
 

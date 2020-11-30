@@ -21,8 +21,9 @@ module CheckPleaseRspecMatcher
 
     def failure_message
       diff_text = ::CheckPlease::Printers.render(diffs, flags)
+      count = diffs.length == 1 ? "1 diff" : "#{diffs.length} diffs"
       <<~EOF
-        Expected two JSON data structures to match, but found the following diffs:
+        Expected two JSON data structures to match, but found the following #{count}:
 
         #{diff_text}
       EOF
